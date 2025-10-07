@@ -152,6 +152,7 @@ class CustomResNetDetector(torch.nn.Module):
         f_x = self.resnet(x)
         h_x = self.last(f_x)
         N,_,W,H = h_x.shape
+        print(f_x)
         h_x = torch.cat([h_x,torch.zeros(N,2,W,H),torch.ones(N,2,W,H)*anchor_size],dim=1)
         return f_x, h_x
 

@@ -8,7 +8,7 @@ from datasets.mnist import MNIST, MNISTMetaData
 from datasets.pascal import PascalVOC, PascalVOCMetaData
 
 generator = torch.Generator(device="cuda")
-
+print("#############################", generator.device)
 def compute_aspect_ratios(dataset):
     aspect_ratios = []
     for i in range(len(dataset)):

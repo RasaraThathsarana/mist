@@ -42,10 +42,9 @@ class Detector(torch.nn.Module):
         # Convert indices to x,y
         kp_int = torch.stack([(indices % W).float(),(indices // W).float()],dim=2)
         # Extract bbox from heatmap
-        print("image", images.device)
-        print("heatmap", heatmap.device)
-        idx = torch.stack([torch.arange(images.shape[0]).reshape(-1,1,1).repeat(1,self.config.k,heatmap.shape[1]-1),
-                           torch.arange(1,heatmap.shape[1]).reshape(1,1,-1).repeat(images.shape[0],self.config.k,1),
+        device = images.device
+        idx = torch.stack([torch.arange(images.shape[0], device=device).reshape(-1,1,1).repeat(1,self.config.k,heatmap.shape[1]-1),
+                           torch.arange(1,heatmap.shape[1], device=device).reshape(1,1,-1).repeat(images.shape[0],self.config.k,1),
                            indices.unsqueeze(-1).repeat(1,1,heatmap.shape[1]-1)],dim=0) 
         bbox = heatmap.view(heatmap.shape[0],heatmap.shape[1],-1)[tuple(idx)]
         

@@ -7,6 +7,7 @@ from datasets.grouped_batch_sampler import GroupedBatchSampler
 from datasets.mnist import MNIST, MNISTMetaData
 from datasets.pascal import PascalVOC, PascalVOCMetaData
 
+generator = torch.Generator(device="cuda")
 
 def compute_aspect_ratios(dataset):
     aspect_ratios = []
@@ -57,6 +58,7 @@ def get_dataset(config, mode="train"):
             collate_fn=collector,
             num_workers=0,
             pin_memory=True,
+            generator=generator,
         )
         meta_data = PascalVOCMetaData(config, mode)
     else:

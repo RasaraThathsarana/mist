@@ -42,7 +42,7 @@ def get_dataset(config, mode="train"):
         # init dataset
         dataset = PascalVOC(config, mode)
         # init data sampler
-        sampler = torch.utils.data.sampler.RandomSampler(dataset)
+        sampler = torch.utils.data.sampler.RandomSampler(dataset, , generator=generator)
         # init batch sampler
         aspect_ratios = compute_aspect_ratios(dataset)
         group_ids = _quantize(aspect_ratios, [1])

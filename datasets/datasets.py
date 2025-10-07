@@ -8,7 +8,6 @@ from datasets.mnist import MNIST, MNISTMetaData
 from datasets.pascal import PascalVOC, PascalVOCMetaData
 
 generator = torch.Generator(device="cuda")
-print("#############################", generator.device)
 def compute_aspect_ratios(dataset):
     aspect_ratios = []
     for i in range(len(dataset)):
@@ -42,7 +41,7 @@ def get_dataset(config, mode="train"):
         # init dataset
         dataset = PascalVOC(config, mode)
         # init data sampler
-        sampler = torch.utils.data.sampler.RandomSampler(dataset, , generator=generator)
+        sampler = torch.utils.data.sampler.RandomSampler(dataset, generator=generator)
         # init batch sampler
         aspect_ratios = compute_aspect_ratios(dataset)
         group_ids = _quantize(aspect_ratios, [1])

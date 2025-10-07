@@ -18,7 +18,7 @@ def get_mist_config():
     parser.add_argument('--name', type=str, default='test')
     parser.add_argument('--comment', type=str, default='')
     # Dataset base path
-    parser.add_argument('--dataset_dir', type=str, default='/home/yjin/datasets')
+    parser.add_argument('--dataset_dir', type=str, default='/kaggle/input/mnist_hard/')
     # Model base path
     parser.add_argument('--model_dir', type=str, default='./pretrained_models')
     # Choose dataset

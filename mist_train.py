@@ -22,7 +22,7 @@ from utils.torch_utils import (
 from utils.loss_functions import one_hot_classification_loss
 from utils.utils import tensorboard_scheduler
 from utils.viz_utils import save_bbox_images
-
+torch.set_default_device("cuda")
 
 class MISTTrainer:
     def __init__(self, config, mist):

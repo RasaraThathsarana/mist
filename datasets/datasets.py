@@ -32,7 +32,7 @@ def get_dataset(config, mode="train"):
             shuffle=True,
             num_workers=8,
             pin_memory=True,
-            generator = torch.Generator(device='cpu')
+            generator = torch.Generator(device='cuda')
         )
         meta_data = MNISTMetaData()
     elif config.dataset.startswith("VOC"):
@@ -57,7 +57,7 @@ def get_dataset(config, mode="train"):
             collate_fn=collector,
             num_workers=0,
             pin_memory=True,
-            generator = torch.Generator(device='cpu'),
+            generator = torch.Generator(device='cuda'),
         )
         meta_data = PascalVOCMetaData(config, mode)
     else:

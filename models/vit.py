@@ -29,7 +29,6 @@ class ViTClassifier(torch.nn.Module):
         patches = F.interpolate(
             patches, size=(224, 224), mode="bilinear", align_corners=False
         )
-        print(patches.shape)
         features = self.vit(patches)  # [B*N, 768]
         logits = self.classifier(features)  # [B*N, num_classes]
         logits = logits.view(B, N, -1)

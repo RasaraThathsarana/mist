@@ -26,7 +26,7 @@ def get_mist_config():
     # Number of Epoch
     parser.add_argument('--epochs', type=int, default=2000)
     # Batch Size
-    parser.add_argument('--batch_size', type=int, default=32)
+    parser.add_argument('--batch_size', type=int, default=8)
     # Save Weight
     parser.add_argument('--save_weights',type=str2bool, default=False)
     # Resume

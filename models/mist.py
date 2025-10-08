@@ -9,7 +9,6 @@ class MIST():
         self.detector = Detector(config).cuda()
         # init classifier
         feat_ch = self.detector.get_featuremap_channels()
-        print(feat_ch)
         self.classifier = ClassifierNetWork(config,feat_ch).cuda()
 
     def save_state_dict(self, path):
@@ -23,6 +22,8 @@ class MIST():
     def forward(self, image):
         # run detection network
         bbox_dt, detector_diag = self.detector.forward(image)
+        print("detector_diag['featuremap']: ", detector_diag['featuremap'].shape)
+        print("bbox_dt.detach(): ", bbox_dt.detach().shape)
         # run task network
         labels, logits, _ = self.classifier.forward(detector_diag['featuremap'], bbox_dt.detach())
         # convert bbox to image scale

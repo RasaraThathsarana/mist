@@ -132,7 +132,7 @@ class ResNet34Detector(torch.nn.Module):
         heatmap_w_h = torch.ones([B,2,W,H])*anchor_size
         heatmap_r = heatmap[:,[0],:,:]
         heatmap_x_y = torch.nn.functional.relu(heatmap[:,[1,2],:,:])
-        heatmap = torch.cat([heatmap_r,heatmap_x_y,heatmap_w_h],dim=1)
+        heatmap = torch.cat([heatmap_r.to('cuda'),heatmap_x_y,heatmap_w_h.to('cuda')],dim=1)
 
         return featuremap, heatmap 
 

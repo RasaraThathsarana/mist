@@ -10,6 +10,7 @@ def ClassifierNetWork(config, feat_ch):
     elif config.detector_backbone == "ResNet34":
         return ResnetClassifier(config, feat_ch)
     elif config.detector_backbone == "ViT":
+        print("awaaaaa")
         return ViTClassifier(config, feat_ch)
     else:
         raise Exception("invalid backbone")

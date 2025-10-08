@@ -5,10 +5,10 @@ from models.vit import ViTClassifier
 
 
 def ClassifierNetWork(config, feat_ch):
-    # if config.detector_backbone == "CustomResNet":
-    #     return CustomClassifier(config, feat_ch)
-    # elif config.detector_backbone == "ResNet34":
-        # return ResnetClassifier(config, feat_ch)
+    if config.detector_backbone == "CustomResNet":
+        return CustomClassifier(config, feat_ch)
+    elif config.detector_backbone == "ResNet34":
+        return ResnetClassifier(config, feat_ch)
     if True:
         print("awaaaaa")
         return ViTClassifier(config, feat_ch)

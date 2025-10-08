@@ -69,7 +69,7 @@ def get_mist_config():
 
     ## --- Detector Settings 
     # Detector Backbone VGG16 or ResNet
-    parser.add_argument('--detector_backbone',type=str,default='CustomResNet')
+    parser.add_argument('--detector_backbone',type=str,default='ViT')
     # Softmax kernal size to heatmap ratio 
     parser.add_argument('--sm_kernal_size_ratio',  type=float, default=0.2)
     # NMS kernal size to heatmap ratio 

@@ -132,13 +132,9 @@ class ResNet34Detector(torch.nn.Module):
 
         heatmap_w_h = torch.ones([B,2,W,H])*anchor_size
         heatmap_r = heatmap[:,[0],:,:]
-        # heatmap_x_y = torch.nn.functional.relu(heatmap[:,[1,2],:,:])
-        # print("heatmap device:", heatmap.device)
-        # print("heatmap_r device:", heatmap_r.device)
-        # print("heatmap_x_y device:", heatmap_x_y.device)
-        # print("heatmap_w_h device:", heatmap_w_h.device)
-        # device = heatmap.device  # automatically detect where the input tensor is
-        # heatmap = torch.cat([heatmap_r.to(device), heatmap_x_y.to(device), heatmap_w_h.to(device)], dim=1)
+        heatmap_x_y = torch.nn.functional.relu(heatmap[:,[1,2],:,:])
+        device = heatmap.device  # automatically detect where the input tensor is
+        heatmap = torch.cat([heatmap_r.to(device), heatmap_x_y.to(device), heatmap_w_h.to(device)], dim=1)
 
         return featuremap, heatmap 
 
